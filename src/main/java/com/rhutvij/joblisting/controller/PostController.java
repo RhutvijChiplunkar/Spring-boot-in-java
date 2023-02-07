@@ -17,10 +17,9 @@ import java.util.List;
 //@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class}) // gives error for mongoTemplate
 //@SpringBootApplication //Exception opening socket && connect timed out errors
 //without any of the above - Exception opening socket && connect timed out errors
-
-//@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @SpringBootApplication
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
     //Spring will create class and object behind the scenes
@@ -35,16 +34,19 @@ public class PostController {
         response.sendRedirect("/swagger-ui.html");
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/allPosts")
+    @CrossOrigin
     public List<Post> getAllPosts(){
         return repo.findAll();
     }
 
     @GetMapping("/posts/{text}")
+    @CrossOrigin
     public List<Post> search(@PathVariable String text){
         return srepo.findByText(text);
     }
     @PostMapping("/post")
+    @CrossOrigin
     public Post addPost(@RequestBody Post post){
         return repo.save(post);
     }

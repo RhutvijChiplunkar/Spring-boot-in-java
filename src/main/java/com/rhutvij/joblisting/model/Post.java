@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Arrays;
 
 //maps java class with document
-@Document(collection = "JobPosts")
+@Document(collection = "JobPost")
 public class Post {
     private String profile;
     private String desc;
